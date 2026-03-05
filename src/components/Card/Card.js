@@ -7,7 +7,7 @@ export default function Card({ card, selected, onClick, faceDown, small, disable
     return (
       <div className={`${styles.card} ${styles.faceDown} ${small ? styles.small : ''}`}>
         <div className={styles.cardBack}>
-          <div className={styles.cardPattern}>🃏</div>
+          <img src="/logo.png" className={styles.cardPattern} alt="" draggable="false" />
         </div>
       </div>
     );

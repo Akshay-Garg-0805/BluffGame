@@ -60,7 +60,7 @@ export default function Home() {
       <div className={styles.container}>
         {/* Hero */}
         <div className={styles.hero}>
-          <div className={styles.logoIcon}>🃏</div>
+          <img src="/logo.png" alt="Bluff Logo" className={styles.logoIcon} />
           <h1 className={styles.title}>BLUFF</h1>
           <p className={styles.subtitle}>The Ultimate Card Game of Deception</p>
           <p className={styles.desc}>

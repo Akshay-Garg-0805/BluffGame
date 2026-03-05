@@ -59,7 +59,9 @@
   animation: fadeInDown 0.8s ease;
 }
 .logoIcon {
-  font-size: 4rem;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
   margin-bottom: var(--space-md);
   animation: float 3s ease-in-out infinite;
 }
