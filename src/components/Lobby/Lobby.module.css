@@ -1,0 +1,211 @@
+.lobby {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xl);
+    min-height: 100vh;
+    justify-content: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.roomCode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.codeLabel {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.code {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 8px;
+    padding: var(--space-md) var(--space-xl);
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--accent-purple);
+    transition: all var(--transition-base);
+}
+
+.code:hover {
+    border-color: var(--accent-purple);
+    box-shadow: var(--shadow-glow-purple);
+}
+
+.copyIcon {
+    font-size: 1.2rem;
+}
+
+.copyHint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Deck Info */
+.deckInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-md) var(--space-xl);
+    background: var(--bg-glass-light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    justify-content: center;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.infoLabel {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.infoValue {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-green);
+}
+
+.infoDivider {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+}
+
+.infoValueReserve {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-amber);
+}
+
+.distributionNote {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: rgba(59, 130, 246, 0.06);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    width: 100%;
+}
+
+/* Players */
+.playerList {
+    width: 100%;
+}
+
+.playersTitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.players {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.playerCard {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-glass-light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    animation: fadeInUp 0.3s ease;
+    transition: border-color var(--transition-fast);
+}
+
+.playerCard.isMe {
+    border-color: var(--accent-purple-glow);
+    background: rgba(139, 92, 246, 0.05);
+}
+
+.avatar {
+    font-size: 1.8rem;
+}
+
+.name {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.youBadge,
+.hostBadge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.youBadge {
+    background: var(--accent-purple-glow);
+    color: var(--accent-purple);
+}
+
+.hostBadge {
+    background: var(--accent-amber-glow);
+    color: var(--accent-amber);
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+}
+
+.waiting {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    animation: pulse 2s ease-in-out infinite;
+}

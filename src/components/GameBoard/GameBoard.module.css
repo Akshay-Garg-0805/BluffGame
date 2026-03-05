@@ -1,0 +1,446 @@
+.board {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+  position: relative;
+}
+
+/* Top Bar */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.roomBadge {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.turnInfo {
+  font-weight: 600;
+  color: var(--accent-amber);
+  font-size: 0.95rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.badges {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.pileBadge, .reserveBadge {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  background: var(--bg-glass-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.reserveBadge {
+  color: var(--accent-green);
+}
+
+/* Other Players */
+.otherPlayers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-md);
+}
+
+.playerSlot {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-glass-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  min-width: 140px;
+}
+
+.playerSlot.activeTurn {
+  border-color: var(--accent-amber);
+  box-shadow: 0 0 12px var(--accent-amber-glow);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.playerSlot.disconnected {
+  opacity: 0.4;
+}
+
+.slotAvatar {
+  font-size: 1.6rem;
+  position: relative;
+}
+
+.turnRing {
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--accent-amber);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.slotInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.slotName {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.slotCards {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Center Area */
+.centerArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-md);
+  flex: 1;
+  justify-content: center;
+  min-height: 180px;
+  position: relative;
+}
+
+.pile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.pileStack {
+  display: flex;
+  position: relative;
+  width: 80px;
+  height: 90px;
+}
+
+.pileCard {
+  position: absolute;
+  transition: transform var(--transition-base);
+}
+
+.pileCount {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.emptyPile {
+  width: 70px;
+  height: 100px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.lastPlay {
+  text-align: center;
+}
+
+.lastPlayText {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: var(--bg-glass-light);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+}
+
+/* Bluff Result Overlay */
+.bluffOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  animation: fadeIn 0.2s ease;
+}
+
+.bluffModal {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: popIn 0.4s ease;
+  border: 2px solid;
+}
+
+.bluffCorrect {
+  border-color: var(--accent-red);
+  box-shadow: 0 0 40px var(--accent-red-glow);
+}
+
+.bluffWrong {
+  border-color: var(--accent-amber);
+  box-shadow: 0 0 40px var(--accent-amber-glow);
+}
+
+.bluffEmoji {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+}
+
+.bluffModal h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: var(--space-sm);
+}
+
+.bluffModal p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.revealCards {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* Turn Actions (bluff + play/pass combined) */
+.turnActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  animation: fadeInUp 0.3s ease;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Inline Bluff Section */
+.bluffSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-lg);
+  width: 100%;
+}
+
+.bluffHint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.bluffBtn {
+  padding: 12px 36px;
+  background: var(--gradient-red);
+  color: white;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border-radius: var(--radius-full);
+  animation: pulse 1.5s ease-in-out infinite;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-glow-red);
+}
+
+.bluffBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px var(--accent-red-glow);
+}
+
+/* Controls */
+.controls {
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  justify-content: center;
+}
+
+.controlLabel {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  font-size: 0.9rem;
+}
+
+.controlLabel strong {
+  color: var(--accent-amber);
+}
+
+.rankPicker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.3s ease;
+}
+
+.rankGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  max-width: 500px;
+}
+
+.rankBtn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-glass-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: all var(--transition-base);
+}
+
+.rankBtn:hover {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-glow-purple);
+}
+
+.playControls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.3s ease;
+}
+
+.playBtns {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.waitMsg {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* My Hand */
+.myHand {
+  padding: var(--space-md) var(--space-lg);
+  padding-bottom: var(--space-lg);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+  border-top: 1px solid var(--border);
+}
+
+.handLabel {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+}
+
+.handCards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 100%;
+}
+
+/* Game Log */
+.gameLog {
+  position: fixed;
+  right: var(--space-md);
+  top: 70px;
+  width: 280px;
+  max-height: 300px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.logHeader {
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.logEntries {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logEntry {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 3px var(--space-sm);
+  border-radius: var(--radius-sm);
+}
+
+.logEntry:last-child {
+  color: var(--text-secondary);
+  background: var(--bg-glass-light);
+}
+
+@media (max-width: 768px) {
+  .gameLog {
+    position: static;
+    width: 100%;
+    max-height: 150px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .topBar {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+  }
+  .otherPlayers {
+    gap: var(--space-sm);
+  }
+  .playerSlot {
+    min-width: 120px;
+    padding: var(--space-xs) var(--space-sm);
+  }
+}
